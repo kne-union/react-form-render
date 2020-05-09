@@ -33,8 +33,7 @@
   },
   "devDependencies": {
     "@kne/react-fetch": "^0.1.8",
-    "@kne/react-form": "0.1.0-alpha.0",
-    "@kne/react-form-render": "0.1.0-alpha.1",
+    "@kne/react-form-render": "^0.1.0",
     "antd": "^4.2.0",
     "axios": "^0.19.2",
     "node-sass": "^4.14.1"
