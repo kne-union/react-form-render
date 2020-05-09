@@ -73,7 +73,7 @@ export default () => {
 
 |属性名|说明|类型|默认值|
 |  ---  | ---  | --- | --- |
-| schema | json数据，必须符合预定义的jsonschema格式，参考 [form-schema.json](https://github.com/kne-union/react-form-render/blob/master/src/form-schema.json) ｜ object ｜ - ｜
+| schema | json数据，必须符合预定义的jsonschema格式，参考 [form-schema.json](https://github.com/kne-union/react-form-render/blob/master/src/form-schema.json) | object | - |
 
 其他属性参考 [@kne/react-form-antd](https://github.com/kne-union/react-form-antd)
 
