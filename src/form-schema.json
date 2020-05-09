@@ -1,0 +1,310 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "className": {
+      "type": "string",
+      "title": "类名"
+    },
+    "padding": {
+      "title": "边距",
+      "type": "array",
+      "default": [
+        0,
+        0
+      ],
+      "items": {
+        "type": "integer"
+      }
+    },
+    "fieldType": {
+      "default": "Input",
+      "enum": [
+        "Input",
+        "InputNumber",
+        "Select",
+        "SelectFetch",
+        "SelectSearch",
+        "Chekbox",
+        "ChekboxGroup",
+        "Radio",
+        "RadioGroup",
+        "DatePicker",
+        "Cascader",
+        "Switch",
+        "TextArea",
+        "TreeSelect"
+      ]
+    },
+    "nodeType": {
+      "enum": [
+        "a",
+        "br",
+        "div",
+        "span"
+      ]
+    },
+    "fieldRule": {
+      "oneOf": [
+        {
+          "title": "必填",
+          "type": "string",
+          "const": "REQ"
+        },
+        {
+          "title": "长度",
+          "type": "string",
+          "pattern": "^LEN-[0-9]+"
+        },
+        {
+          "title": "邮箱",
+          "type": "string",
+          "const": "EMAIL"
+        },
+        {
+          "title": "电话",
+          "type": "string",
+          "const": "TEL"
+        }
+      ]
+    },
+    "field": {
+      "title": "字段",
+      "type": "object",
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "field",
+          "title": "类型",
+          "default": "field"
+        },
+        "className": {
+          "$ref": "#/definitions/className"
+        },
+        "tagName": {
+          "title": "字段控件类型",
+          "$ref": "#/definitions/fieldType"
+        },
+        "name": {
+          "type": "string",
+          "title": "字段名"
+        },
+        "rule": {
+          "type": "array",
+          "title": "验证规则",
+          "items": {
+            "$ref": "#/definitions/fieldRule"
+          }
+        },
+        "label": {
+          "type": "string",
+          "title": "字段标签"
+        },
+        "value": {
+          "title": "默认值"
+        },
+        "props": {
+          "title": "字段属性",
+          "type": "object"
+        }
+      }
+    },
+    "submitButton": {
+      "title": "提交按钮",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "submitButton",
+          "title": "类型",
+          "default": "submitButton"
+        },
+        "children": {
+          "title": "按钮子元素"
+        },
+        "props": {
+          "title": "按钮属性",
+          "type": "object"
+        }
+      }
+    },
+    "resetButton": {
+      "title": "重置按钮",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "resetButton",
+          "title": "类型",
+          "default": "resetButton"
+        },
+        "children": {
+          "title": "按钮子元素"
+        },
+        "props": {
+          "title": "按钮属性",
+          "type": "object"
+        }
+      }
+    },
+    "node": {
+      "title": "其他元素",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "title": "类型",
+          "type": "string",
+          "const": "node",
+          "default": "node"
+        },
+        "className": {
+          "$ref": "#/definitions/className"
+        },
+        "tagName": {
+          "type": "string",
+          "$ref": "#/definitions/nodeType"
+        },
+        "children": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "title": "表单渲染格式",
+  "type": "object",
+  "required": [
+    "children"
+  ],
+  "properties": {
+    "className": {
+      "$ref": "#/definitions/className"
+    },
+    "title": {
+      "title": "表单标题",
+      "type": "string"
+    },
+    "type": {
+      "title": "表单样式类型",
+      "type": "string",
+      "enum": [
+        "inline",
+        "default",
+        "inner"
+      ],
+      "default": "default"
+    },
+    "padding": {
+      "$ref": "#/definitions/padding"
+    },
+    "size": {
+      "title": "表单尺寸",
+      "type": "string",
+      "enum": [
+        "small",
+        "default",
+        "large"
+      ],
+      "default": "default"
+    },
+    "enterSubmit": {
+      "title": "按回车键是否提交表单",
+      "type": "boolean",
+      "default": false
+    },
+    "scrollToError": {
+      "title": "发生错误时是否滚动到错误位置",
+      "type": "boolean",
+      "default": true
+    },
+    "children": {
+      "type": "array",
+      "title": "表单项",
+      "items": {
+        "oneOf": [
+          {
+            "title": "字段",
+            "$ref": "#/definitions/field"
+          },
+          {
+            "title": "节点",
+            "$ref": "#/definitions/node"
+          },
+          {
+            "title": "提交按钮",
+            "$ref": "#/definitions/submitButton"
+          },
+          {
+            "title": "重置按钮",
+            "$ref": "#/definitions/resetButton"
+          },
+          {
+            "title": "容器",
+            "type": "object",
+            "required": [
+              "type",
+              "children"
+            ],
+            "properties": {
+              "title": {
+                "title": "标题",
+                "type": "string"
+              },
+              "className": {
+                "$ref": "#/definitions/className"
+              },
+              "type": {
+                "title": "类型",
+                "type": "string",
+                "const": "container",
+                "default": "container"
+              },
+              "children": {
+                "title": "容器项",
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "title": "字段",
+                      "$ref": "#/definitions/field"
+                    },
+                    {
+                      "title": "节点",
+                      "$ref": "#/definitions/node"
+                    },
+                    {
+                      "title": "提交按钮",
+                      "$ref": "#/definitions/submitButton"
+                    },
+                    {
+                      "title": "重置按钮",
+                      "$ref": "#/definitions/resetButton"
+                    }
+                  ]
+                }
+              },
+              "padding": {
+                "$ref": "#/definitions/padding"
+              },
+              "props": {
+                "title": "容器属性",
+                "type": "object"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

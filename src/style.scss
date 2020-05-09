@@ -1,0 +1,11 @@
+.form-render {
+  .container {
+    .ant-space-item {
+      flex: 1;
+    }
+
+    &-content {
+      width: 100%;
+    }
+  }
+}
