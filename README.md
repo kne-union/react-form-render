@@ -82,17 +82,21 @@ export default () => {
 ### register.appendField(name, Component)
 
 name: 注册名，可以在schema数据的field里使用
+
 Component: 组件对象，需要扩展的ReactComponent
 
 ### register.appendNode(name, Component)
 
 name: 注册名，可以在schema数据的field里使用
+
 Component: 组件对象，需要扩展的ReactComponent
 
 ### register.appendRule(name, func, schema)
 
 name: 规则名，可以在schema数据的rule里使用
+
 func: 规则函数 参考 [@kne/react-form](https://github.com/kne-union/react-form)
+
 schema(可选):schema 规则，默认值为
 ```js
 {
