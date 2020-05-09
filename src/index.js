@@ -28,15 +28,8 @@ const Node = ({ tagName, props }) => {
   return createElement(tagName, props);
 };
 
-const List = ({ title, children }) => {
-  return <div className="list">
-    <div className="title">{title}</div>
-    <div className="list-content">{renderChildren(children)}</div>
-  </div>;
-};
-
-const Container = ({ title, padding, children, props }) => {
-  return <div className="container">
+const Container = ({ title, className, padding, children, props }) => {
+  return <div className={classnames('container', className)}>
     {title ? <div className="container-title">{title}</div> : null}
     <Space className="container-content" {...props} style={{
       padding: (padding || [0, 0]).map((num) => num + 'px').join(' ')
@@ -47,7 +40,6 @@ const Container = ({ title, padding, children, props }) => {
 const mapping = {
   'field': Field,
   'node': Node,
-  'list': List,
   'container': Container,
   'submitButton': ({ children, props }) => <SubmitButton block
                                                          type="primary" {...props}>{children || '提交'}</SubmitButton>,
