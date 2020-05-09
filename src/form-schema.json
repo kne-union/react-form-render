@@ -18,22 +18,7 @@
     },
     "fieldType": {
       "default": "Input",
-      "enum": [
-        "Input",
-        "InputNumber",
-        "Select",
-        "SelectFetch",
-        "SelectSearch",
-        "Chekbox",
-        "ChekboxGroup",
-        "Radio",
-        "RadioGroup",
-        "DatePicker",
-        "Cascader",
-        "Switch",
-        "TextArea",
-        "TreeSelect"
-      ]
+      "enum": []
     },
     "nodeType": {
       "enum": [

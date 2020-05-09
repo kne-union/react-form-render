@@ -5,13 +5,15 @@ import isEqual from 'lodash/isEqual';
 
 export const fields = { ...baseFields }, nodes = {}, formSchema = cloneDeep(baseSchema);
 
+formSchema.definitions.fieldType.enum = Object.keys(fields);
+
 export default {
   appendNode(name, Component) {
     if (nodes[name]) {
       throw new Error(`${name}已存在`);
     }
     nodes[name] = Component;
-    formSchema.definitions.fieldType.enum.push(name);
+    formSchema.definitions.nodeType.enum.push(name);
   },
   appendRule(name, func, schema) {
     presetRules({
@@ -32,7 +34,7 @@ export default {
       throw new Error(`${name}已存在`);
     }
     fields[name] = Component;
-    formSchema.definitions.nodeType.enum.push(name);
+    formSchema.definitions.fieldType.enum.push(name);
   }
 };
 

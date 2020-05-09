@@ -1,7 +1,7 @@
 import React, { useMemo, createElement } from 'react';
 import Form, { SubmitButton, ResetButton } from '@kne/react-form-antd';
 import { Space, Alert } from 'antd';
-import plugin$, { formSchema, fields, nodes } from './plugin';
+import register$, { formSchema, fields, nodes } from './register';
 import classnames from 'classnames';
 import { validate, ValidationError } from 'jsonschema';
 import ErrorBoundary from '@kne/react-error-boundary';
@@ -89,6 +89,6 @@ export default (props) => {
   }}><FormRender {...props}/></ErrorBoundary>;
 };
 
-export const plugin = plugin$;
+export const register = register$;
 
 export const schema = formSchema;

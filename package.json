@@ -1,6 +1,6 @@
 {
   "name": "@kne/react-form-render",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.1",
   "description": "用于通过jsonschema生成一个表单",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
