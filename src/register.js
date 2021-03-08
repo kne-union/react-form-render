@@ -3,9 +3,24 @@ import { fields as baseFields, presetRules } from '@kne/react-form-antd';
 import cloneDeep from 'lodash/cloneDeep';
 import isEqual from 'lodash/isEqual';
 
-export const fields = { ...baseFields }, nodes = {}, formSchema = cloneDeep(baseSchema);
+export const fields = { ...baseFields },
+  nodes = {},
+  formSchema = cloneDeep(baseSchema);
 
-formSchema.definitions.fieldType.enum = Object.keys(fields);
+const getFieldsNames = fields => {
+  const keys = Object.keys(fields);
+  keys.slice(0).forEach(key => {
+    const Field = fields[key];
+    Object.keys(Field).forEach(item => {
+      if (typeof Field[item] === 'function') {
+        keys.push(`${key}.${item}`);
+      }
+    });
+  });
+  return keys;
+};
+
+formSchema.definitions.fieldType.enum = getFieldsNames(fields);
 
 export default {
   appendNode(name, Component) {
@@ -21,11 +36,11 @@ export default {
     });
     const target = Object.assign({}, schema, {
       title: `规则-${name}`,
-      'type': 'string',
-      'const': name
+      type: 'string',
+      const: name
     });
 
-    if (!formSchema.fieldRule.oneOf.find((item) => isEqual(item, target))) {
+    if (!formSchema.fieldRule.oneOf.find(item => isEqual(item, target))) {
       formSchema.fieldRule.oneOf.push(target);
     }
   },
@@ -37,5 +52,3 @@ export default {
     formSchema.definitions.fieldType.enum.push(name);
   }
 };
-
-

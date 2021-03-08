@@ -61,6 +61,12 @@ export default () => {
               label: '字段1',
               name: 'field1',
               rule: ['REQ']
+            },{
+              type: 'field',
+              tagName: "Input",
+              label: '字段3',
+              name: 'field3',
+              rule: ['REQ']
             }
           ]
         },{
